@@ -64,7 +64,7 @@ def create_release
     api_token: 'acccece26824d0185e7ea43254871d8c6faa9cad',
     name: @version_string,
     tag_name: @tag,
-    description: @changelog
+    description: @changelog.join("\n")
   )
 end
 end
