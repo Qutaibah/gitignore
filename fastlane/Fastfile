@@ -18,7 +18,9 @@ default_platform(:ios)
 platform :ios do
   desc "Description of what the lane does"
   lane :test do
-    @version_string = "3.3.3/30"
+    ENV["GITHUB_API_TOKEN"] = "1799fd94282dcb4002f5a97e61724c66280184e9"
+
+    @version_string = "3.3.3/31"
 
     changelog
     commit
