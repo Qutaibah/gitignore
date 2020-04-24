@@ -1,0 +1,65 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :test do
+    @version_string = "3.3.3/22"
+
+    changelog
+  end
+
+  def changelog
+    @changelog =
+      changelog_from_git_commits(
+        between: ['origin/master', git_branch],
+        pretty: '%s',
+        date_format: 'short',
+        merge_commit_filtering: 'exclude_merges'
+      )
+    @changelog =
+      @changelog.split(/\n+/).uniq.delete_if do |x|
+        x.include?('IGNORE') || x.include?('pull request') || x.include?('bump')
+      end
+    @changes_count = @changelog.count
+    @changelog.join("\n")
+  end
+
+def commit
+  message = "version bump #{@version_string}"
+  commit_version_bump(message: @version_string)
+end
+
+def tag
+  @tag = "ALPHA/#{@version_string}"
+  add_git_tag(tag: @tag)
+end
+
+def push
+  push_to_git_remote
+end
+
+def create_release
+  set_github_release(
+    repository_name: 'Qutaibah/gitignore',
+    api_token: 'acccece26824d0185e7ea43254871d8c6faa9cad',
+    name: @version_string,
+    tag_name: @tag,
+    description: @changelog
+  )
+end
+end
