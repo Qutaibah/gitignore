@@ -21,6 +21,10 @@ platform :ios do
     @version_string = "3.3.3/22"
 
     changelog
+    commit
+    tag
+    push
+    create_release
   end
 
   def changelog
@@ -41,7 +45,8 @@ platform :ios do
 
 def commit
   message = "version bump #{@version_string}"
-  commit_version_bump(message: @version_string)
+  sh "git add . && git commit -m 'version bump'"
+  # commit_version_bump(message: @version_string, no_verify: true)
 end
 
 def tag
