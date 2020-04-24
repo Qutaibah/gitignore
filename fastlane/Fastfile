@@ -18,7 +18,7 @@ default_platform(:ios)
 platform :ios do
   desc "Description of what the lane does"
   lane :test do
-    @version_string = "3.3.3/27"
+    @version_string = "3.3.3/28"
 
     changelog
     commit
@@ -40,7 +40,7 @@ platform :ios do
         x.include?('IGNORE') || x.include?('pull request') || x.include?('bump')
       end
     @changes_count = @changelog.count
-    @changelog.join("\n")
+    @changelog
   end
 
 def commit
@@ -59,11 +59,24 @@ def push
 end
 
 def create_release
+  changes = @changelog
   set_github_release(
     name: @version_string,
     tag_name: @tag,
     commitish: "master",
-    description: @changelog.join("\n")
+    description: official_changelog
   )
+end
+
+def official_changelog
+  @changelog.split(/\n+/).select do |x|
+    x.downcase().include?("atlassian") ||
+    x.downcase().include?("jira") ||
+    x.downcase().include?("cai-") ||
+    x.downcase().include?("qa") ||
+    x.downcase().include?("sentry") ||
+    x.downcase().include?("crash")
+  end
+  .join("\n")
 end
 end
