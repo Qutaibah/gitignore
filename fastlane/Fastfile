@@ -18,7 +18,7 @@ default_platform(:ios)
 platform :ios do
   desc "Description of what the lane does"
   lane :test do
-    @version_string = "3.3.3/28"
+    @version_string = "3.3.3/29"
 
     changelog
     commit
@@ -69,7 +69,7 @@ def create_release
 end
 
 def official_changelog
-  @changelog.split(/\n+/).select do |x|
+  @changelog.select do |x|
     x.downcase().include?("atlassian") ||
     x.downcase().include?("jira") ||
     x.downcase().include?("cai-") ||
