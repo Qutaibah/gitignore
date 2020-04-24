@@ -5,32 +5,37 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.00779">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.004833">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: git_branch" time="0.012752">
+      <testcase classname="fastlane.lanes" name="1: git_branch" time="0.011415">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: changelog_from_git_commits" time="0.011221">
+      <testcase classname="fastlane.lanes" name="2: changelog_from_git_commits" time="0.009162">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: git add . &amp;&amp; git commit -m 'version bump'" time="0.038546">
+      <testcase classname="fastlane.lanes" name="3: git add . &amp;&amp; git commit -m 'version bump'" time="0.037825">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: add_git_tag" time="0.014941">
+      <testcase classname="fastlane.lanes" name="4: add_git_tag" time="0.015347">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: push_to_git_remote" time="4.83728">
+      <testcase classname="fastlane.lanes" name="5: push_to_git_remote" time="4.813302">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: set_github_release" time="25.888421">
         
       </testcase>
     
