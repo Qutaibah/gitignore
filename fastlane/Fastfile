@@ -18,7 +18,7 @@ default_platform(:ios)
 platform :ios do
   desc "Description of what the lane does"
   lane :test do
-    @version_string = "3.3.3/24"
+    @version_string = "3.3.3/25"
 
     changelog
     commit
@@ -61,9 +61,10 @@ end
 def create_release
   set_github_release(
     repository_name: 'Qutaibah/gitignore',
-    api_token: 'cae790ec7b71e030011b04808a4337be8dd5a08f',
+    api_token: 'c891229effdb8fee04827e42d817314c6ea0310e',
     name: @version_string,
     tag_name: @tag,
+    commitish: "master",
     description: @changelog.join("\n")
   )
 end
